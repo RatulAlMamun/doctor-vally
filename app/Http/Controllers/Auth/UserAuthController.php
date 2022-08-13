@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserAuthController extends Controller
 {
+    /**
+     * Register user
+     *
+     * @param \App\Http\Controllers\Auth\UserAuthController $request
+     * @return \Illuminate\Http\Response
+     */
     public function register (UserRegistrationRequest $request)
     {
         $data = $request->all();
@@ -30,7 +36,12 @@ class UserAuthController extends Controller
         ]);
     }
 
-
+    /**
+     * User login with access token
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function login (Request $request)
     {
         $data = $request->validate([
@@ -54,6 +65,22 @@ class UserAuthController extends Controller
                 'accessToken' => $token->accessToken,
                 'expiresAt' => $token->token->expires_at,
                 'user' => auth()->user(),
+            ],
+        ]);
+    }
+
+    /**
+     * Get authenticate user information.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function me ()
+    {
+        return response()->json([
+            'error' => false,
+            'message' => 'Authenticate user information.',
+            'data' => [
+                'user' => auth()->user()
             ],
         ]);
     }
