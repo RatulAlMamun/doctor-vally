@@ -27,7 +27,7 @@ class StoreDoctorRequest extends FormRequest
             'name' => 'required|string',
             'designation' => 'required|string',
             'phone' => 'required|string',
-            'image' => 'required|string',
+            'image' => 'required|image|mimes:png,jpg,webp',
             'biography' => 'required|string',
         ];
     }

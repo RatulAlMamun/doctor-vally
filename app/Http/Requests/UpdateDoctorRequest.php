@@ -13,7 +13,7 @@ class UpdateDoctorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string',
+            'designation' => 'string',
+            'phone' => 'string',
+            'image' => 'image|mimes:png,jpg,webp',
+            'biography' => 'string',
         ];
     }
 }
